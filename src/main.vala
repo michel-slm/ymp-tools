@@ -96,7 +96,7 @@ public class YMPInstaller : Window {
 		}
 	}
 
-	private static string process_item (Xml.Node* item) {
+	private static string process_item (Xml.Node* item) throws YMPErrorType {
 		string name = null, summary = null, description = null;
 		for (Xml.Node* iter = item->children; iter != null; iter = iter->next) {
 			if (iter->name == "name") {
@@ -121,7 +121,7 @@ public class YMPInstaller : Window {
 		return name;
 	}
 
-	private static void process_repo (Xml.Node* repo) {
+	private static void process_repo (Xml.Node* repo) throws YMPErrorType {
 		string name = null, summary = null, description = null, url = null;
 		bool recommended = (repo->get_prop ("recommended") == "true") ? true : false;
 		for (Xml.Node* iter = repo->children; iter != null; iter = iter->next) {
@@ -150,7 +150,7 @@ public class YMPInstaller : Window {
 		stdout.printf("\n");
 	}
 
-	private static void process_software (Xml.Node* software) {
+	private static void process_software (Xml.Node* software) throws YMPErrorType {
 		string cmd = "yum install";
 		for (Xml.Node* item = software->children; item != null; item = item->next) {
 			if (item->name == "item") {
