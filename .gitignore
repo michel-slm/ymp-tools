@@ -1,2 +1,8 @@
-*~
+# compiled Python files
+*.py?
 build
+# temporary editor files
+*~
+.#*
+\#*#
+*.swp
